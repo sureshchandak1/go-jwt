@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sureshchandak1/go-jwt/controllers"
 	"github.com/sureshchandak1/go-jwt/initializers"
+	"github.com/sureshchandak1/go-jwt/middleware"
 )
 
 func init() {
@@ -17,7 +18,7 @@ func main() {
 
 	r.POST("/signup", controllers.Signup)
 	r.POST("/login", controllers.Login)
-	r.GET("/validate", controllers.Validate)
+	r.GET("/validate", middleware.RequiredAuth, controllers.Validate)
 
 	r.Run()
 }
